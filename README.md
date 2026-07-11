@@ -23,13 +23,22 @@ reuse mechanisms:
 The split across the three layers:
 
 - **standards** owns the rules (the agent operating contract, including the
-  `declarative-infrastructure` skill).
+  `declarative-infra` skill).
 - **declarative-infra** owns the building blocks (this repo).
 - **Each host's repo** owns one host's truth: flake composition and pins,
   hardware configuration, disko layout, SOPS secrets, OpenTofu root stacks and
   state, and app-specific modules.
 
 No host definitions, secrets, or provider credentials live here.
+
+## Opinionated contract
+
+These modules encode one coherent server profile; they are not a framework for
+every possible host. Defaults such as systemd-boot, the administrative user,
+SSH hardening, firewall ports, Podman, PostgreSQL authentication, and local
+backup policy are intentional opinions. Add an option or split a module only
+when a real consumer cannot use the existing contract cleanly, not in
+anticipation of hypothetical reuse.
 
 ## NixOS modules
 
@@ -93,9 +102,10 @@ Then in the host configuration:
 }
 ```
 
-`example/configuration.nix` is a full eval-only host exercising every module;
-`nix flake check` evaluates it, so option regressions fail in CI without a
-build.
+`example/configuration.nix` is a full eval-only host exercising every module.
+`nix flake check` evaluates it and checks explicit enabled/disabled module
+contracts, so option and composition regressions fail in CI without a host
+deployment.
 
 ## OpenTofu modules
 

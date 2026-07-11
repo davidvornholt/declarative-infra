@@ -14,6 +14,11 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+      disabledConfiguration = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules =
+          [ self.nixosModules.default ./tests/disabled-configuration.nix ];
+      };
     in {
       nixosModules = {
         base = ./modules/base.nix;
@@ -41,6 +46,13 @@
 
       formatter.${system} = treefmtEval.config.build.wrapper;
 
-      checks.${system}.formatting = treefmtEval.config.build.check self;
+      checks.${system} = {
+        formatting = treefmtEval.config.build.check self;
+        module-contracts = import ./tests/module-contracts.nix {
+          inherit pkgs;
+          disabled = disabledConfiguration.config;
+          example = self.nixosConfigurations.example.config;
+        };
+      };
     };
 }
