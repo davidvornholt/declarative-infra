@@ -1,5 +1,13 @@
 # declarative-infra
 
+> **Archived.** This repo is retired as a shared dependency. Infrastructure
+> reuse moved from shared code to shared knowledge: the `declarative-infra`
+> skill in [davidvornholt/standards](https://github.com/davidvornholt/standards)
+> now carries the opinionated server profile, reference NixOS/OpenTofu
+> implementations, and host-repo bootstrap/audit procedures. Consumer repos
+> own their infrastructure code outright (former consumers vendored these
+> modules in place). The content below is kept as-is for history.
+
 Reusable declarative infrastructure, the companion to
 [davidvornholt/standards](https://github.com/davidvornholt/standards): generic
 NixOS modules consumed as a flake input, and generic OpenTofu modules consumed
