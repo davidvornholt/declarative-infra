@@ -1,8 +1,8 @@
 { config, lib, ... }:
 
-let cfg = config.dv.caddy;
+let cfg = config.davidvornholt.caddy;
 in {
-  options.dv.caddy = {
+  options.davidvornholt.caddy = {
     enable = lib.mkEnableOption "Caddy reverse proxy";
 
     acmeEmail = lib.mkOption {

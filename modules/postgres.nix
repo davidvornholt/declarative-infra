@@ -1,13 +1,13 @@
 { config, lib, ... }:
 
 let
-  cfg = config.dv.postgres;
+  cfg = config.davidvornholt.postgres;
   databases =
     lib.unique (cfg.appDatabases ++ lib.attrNames cfg.databaseSystemUsers);
   systemUsersForDatabase = database:
     cfg.databaseSystemUsers.${database} or cfg.appSystemUsers;
 in {
-  options.dv.postgres = {
+  options.davidvornholt.postgres = {
     enable = lib.mkEnableOption "host-managed PostgreSQL";
 
     appDatabases = lib.mkOption {

@@ -10,36 +10,36 @@ _:
     fsType = "tmpfs";
   };
 
-  dv.base = {
+  davidvornholt.base = {
     enable = true;
     adminUser = "admin";
     adminSshKeys = [ ];
     deploySshKeys = [ ];
   };
 
-  dv.caddy = {
+  davidvornholt.caddy = {
     enable = true;
     acmeEmail = "acme@example.com";
   };
 
-  dv.podman.enable = true;
+  davidvornholt.podman.enable = true;
 
-  dv.postgres = {
+  davidvornholt.postgres = {
     enable = true;
     appDatabases = [ "app" ];
     appSystemUsers = [ "app" ];
     databaseSystemUsers = { app_pr_47 = [ "app-pr-47" ]; };
   };
 
-  dv.backup = {
+  davidvornholt.backup = {
     enable = true;
     postgresDatabases = [ "app" ];
   };
 
-  dv.githubRunner = {
+  davidvornholt.githubRunner = {
     enable = true;
     tokenFile = "/run/secrets/github-runner-token";
-    url = "https://github.com/davidvornholt/nix-infra";
+    url = "https://github.com/davidvornholt/declarative-infra";
     name = "example-runner";
     labels = [ "example" ];
   };

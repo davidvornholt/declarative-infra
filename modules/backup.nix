@@ -1,8 +1,8 @@
 { config, lib, ... }:
 
-let cfg = config.dv.backup;
+let cfg = config.davidvornholt.backup;
 in {
-  options.dv.backup = {
+  options.davidvornholt.backup = {
     enable = lib.mkEnableOption "local PostgreSQL dumps on a timer";
 
     postgresDatabases = lib.mkOption {

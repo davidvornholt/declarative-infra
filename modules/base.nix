@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.dv.base;
+let cfg = config.davidvornholt.base;
 in {
-  options.dv.base = {
+  options.davidvornholt.base = {
     enable = lib.mkEnableOption
       "hardened base configuration for a single-purpose server";
 

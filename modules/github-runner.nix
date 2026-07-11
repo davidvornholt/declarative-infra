@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.dv.githubRunner;
+let cfg = config.davidvornholt.githubRunner;
 in {
-  options.dv.githubRunner = {
+  options.davidvornholt.githubRunner = {
     enable = lib.mkEnableOption "GitHub Actions runner for trusted jobs";
 
     tokenFile = lib.mkOption {
